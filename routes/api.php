@@ -12,9 +12,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 // User routes
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', [UserController::class, 'show']);
-    Route::put('/user', [UserController::class, 'update']);
-    Route::delete('/user', [UserController::class, 'destroy']);
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
     // Trip routes
     Route::get('/trips', [TripController::class, 'index']);

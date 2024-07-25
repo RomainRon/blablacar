@@ -9,6 +9,11 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
     // Afficher les informations d'un utilisateur authentifié
     public function show(Request $request)
     {
