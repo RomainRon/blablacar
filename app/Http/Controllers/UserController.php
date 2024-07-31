@@ -15,6 +15,7 @@ class UserController extends Controller
      *     path="/api/users",
      *     summary="Get all users",
      *     tags={"Users"},
+     *     security={{"bearer":{}}},
      *     @OA\Response(
      *         response=200,
      *         description="A list of users",
@@ -30,9 +31,10 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/user/{id}",
+     *     path="/api/users/{id}",
      *     summary="Get user by ID",
      *     tags={"Users"},
+     *     security={{"bearer":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -65,9 +67,10 @@ class UserController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/user/{id}",
+     *     path="/api/users/{id}",
      *     summary="Update user by ID",
      *     tags={"Users"},
+     *     security={{"bearer":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -138,9 +141,10 @@ class UserController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/user/{id}",
+     *     path="/api/users/{id}",
      *     summary="Delete user by ID",
      *     tags={"Users"},
+     *     security={{"bearer":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

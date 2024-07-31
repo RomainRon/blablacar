@@ -9,6 +9,13 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Info(title="Trip API", version="1.0")
  * @OA\Tag(name="Trip", description="API Endpoints for Trip Management")
+ * 
+ * @OA\SecurityScheme(
+ *     securityScheme="sanctum",
+ *     type="http",
+ *     scheme="bearer",
+ *     bearerFormat="JWT"
+ * )
  */
 class TripController extends Controller
 {

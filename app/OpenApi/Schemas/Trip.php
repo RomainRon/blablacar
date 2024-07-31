@@ -27,8 +27,8 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="starting_at",
  *         type="string",
- *         format="date-time",
- *         description="Starting date and time"
+ *         format="date",
+ *         description="Starting date"
  *     ),
  *     @OA\Property(
  *         property="available_places",
@@ -48,14 +48,14 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="created_at",
  *         type="string",
- *         format="date-time",
- *         description="Creation timestamp"
+ *         format="date",
+ *         description="Creation date"
  *     ),
  *     @OA\Property(
  *         property="updated_at",
  *         type="string",
- *         format="date-time",
- *         description="Last update timestamp"
+ *         format="date",
+ *         description="Last update date"
  *     )
  * )
  */

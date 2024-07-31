@@ -96,35 +96,20 @@ class AuthController extends Controller
     /**
      * @OA\Post(
      *     path="/api/logout",
-     *     summary="Logout a user",
+     *     summary="Logout the current user",
      *     tags={"Auth"},
      *     security={{"sanctum":{}}},
-     *     @OA\RequestBody(
-     *         required=false,
-     *         description="No body required for logout"
-     *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="User logged out successfully",
+     *         description="Logged out successfully",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="message", type="string", example="Logged out successfully")
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="Logged out successfully"
+     *             )
      *         )
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         description="Invalid token",
-     *         @OA\JsonContent(type="object")
-     *     ),
-     *     @OA\Parameter(
-     *         name="Authorization",
-     *         in="header",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             example="Bearer {token}"
-     *         ),
-     *         description="Bearer token"
      *     )
      * )
      */
