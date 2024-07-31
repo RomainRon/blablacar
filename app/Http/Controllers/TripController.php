@@ -19,11 +19,32 @@ use OpenApi\Annotations as OA;
  */
 class TripController extends Controller
 {
-    /**
+     /**
      * @OA\Get(
      *     path="/api/trips",
      *     summary="Get all trips",
      *     tags={"Trip"},
+     *     @OA\Parameter(
+     *         name="start",
+     *         in="query",
+     *         description="Filter by starting point",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="end",
+     *         in="query",
+     *         description="Filter by ending point",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="query",
+     *         description="Filter by starting date",
+     *         required=false,
+     *         @OA\Schema(type="string", format="date")
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="A list of trips",
@@ -31,9 +52,23 @@ class TripController extends Controller
      *     )
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Trip::with('user')->get());
+        $query = Trip::query();
+
+        if ($request->has('start')) {
+            $query->where('starting_point', 'like', '%' . $request->start . '%');
+        }
+
+        if ($request->has('end')) {
+            $query->where('ending_point', 'like', '%' . $request->end . '%');
+        }
+
+        if ($request->has('date')) {
+            $query->whereDate('starting_at', $request->date);
+        }
+
+        return response()->json($query->with('user')->get());
     }
 
     /**

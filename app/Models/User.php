@@ -43,4 +43,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Trip::class);
     }
+    public function reservation()
+    {
+        return $this->hasMany(User::class);
+    }
 }

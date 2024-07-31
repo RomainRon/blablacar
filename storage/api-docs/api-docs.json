@@ -135,6 +135,83 @@
                 ]
             }
         },
+        "/api/reservation": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Create a reservation for a user",
+                "operationId": "5748c5057051943a949db32618d788e2",
+                "requestBody": {
+                    "description": "Reservation details",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "trip_id"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "trip_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Reservation created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Reservation"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/trips": {
             "get": {
                 "tags": [
@@ -142,6 +219,36 @@
                 ],
                 "summary": "Get all trips",
                 "operationId": "692b0f6b729af25639ef76046f8fba1f",
+                "parameters": [
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "Filter by starting point",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "Filter by ending point",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Filter by starting date",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "A list of trips",
@@ -637,6 +744,42 @@
                 },
                 "type": "object"
             },
+            "Reservation": {
+                "required": [
+                    "user_id",
+                    "trip_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "ID of the reservation",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "description": "ID of the user",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "trip_id": {
+                        "description": "ID of the trip",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "description": "Creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-07-31T12:34:56Z"
+                    },
+                    "updated_at": {
+                        "description": "Update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-07-31T12:34:56Z"
+                    }
+                },
+                "type": "object"
+            },
             "Trip": {
                 "title": "Trip",
                 "required": [
@@ -789,6 +932,10 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Reservations",
+            "description": "Reservations"
         },
         {
             "name": "Users",

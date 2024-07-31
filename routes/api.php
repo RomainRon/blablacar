@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TripController;
+use App\Http\Controllers\ReservationController;
+
 
 // Auth routes
 Route::post('/register', [AuthController::class, 'register']);
@@ -23,5 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/trips/{id}', [TripController::class, 'show']);
     Route::put('/trips/{id}', [TripController::class, 'update']);
     Route::delete('/trips/{id}', [TripController::class, 'destroy']);
+
+    // Reservation Routes
+    Route::post('/reservation', [ReservationController::class, 'reservation']);
 });
 

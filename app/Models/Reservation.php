@@ -1,23 +1,24 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Trip extends Model
+class Reservation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'starting_point', 'ending_point', 'starting_at', 'available_places', 'price', 'user_id'
+        'user_id', 'trip_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function reservation()
+    public function trip()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Trip::class);
     }
 }
